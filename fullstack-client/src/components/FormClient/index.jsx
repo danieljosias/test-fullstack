@@ -38,8 +38,8 @@ export default function FormClient() {
          <input placeholder="Telefone" type="text" {...register("cellphone")} />
          {errors.cellphone?.message}
 
-         <input placeholder="Celular" type="text" {...register("cellphone")} />
-         {errors.cellphone?.message}
+         <input placeholder="Celular" type="text" {...register("mobile")} />
+         {errors.mobile?.message}
 
          <input placeholder="Data de cadastro" type="date"{...register("date")} />
          {errors.date?.message}
