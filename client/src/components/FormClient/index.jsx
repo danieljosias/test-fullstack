@@ -11,7 +11,7 @@ export default function FormClient() {
         email: yup.string().required("Email obrigatório").email("E-mail inválido"),
         cellphone: yup.string().required("Telefone obrigatório"),
         mobile: yup.string(),
-        date: yup.date().required("Date obrigatória")
+        createdAt: yup.date().required("Date obrigatória")
       });
     
       const {
@@ -42,8 +42,8 @@ export default function FormClient() {
         <input placeholder="Celular" type="text" {...register("mobile")} />
         {errors.mobile?.message}
 
-        <input placeholder="Data de cadastro" type="date"{...register("date")} />
-        {errors.date?.message}
+        <input placeholder="Data de cadastro" type="date"{...register("createdAt")} />
+        {errors.createdAt?.message}
 
         <button type="submit">Enviar!</button>
       </form>
