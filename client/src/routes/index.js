@@ -1,6 +1,6 @@
 import { Switch, Route } from 'react-router-dom'
 import FormContact from '../pages/FormContact'
-import FormClient from '../components/FormClient'
+import FormClient from '../pages/FormContact'
 
 export const Routes = () =>{
     return(
@@ -8,7 +8,7 @@ export const Routes = () =>{
             <Route exact="/">
                 <FormClient/>
             </Route>
-            
+
             <Route exact="/contact">
                 <FormContact/>
             </Route>

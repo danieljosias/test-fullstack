@@ -3,6 +3,7 @@ import { Container } from './styles'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import Contact from '../Contact';
 
 export default function FormContact() {
     const formSchema = yup.object().shape({
@@ -42,6 +43,7 @@ export default function FormContact() {
 
          <button type="submit">Enviar!</button>
        </form>
+       <Contact/>
     </Container>
   )
 }
