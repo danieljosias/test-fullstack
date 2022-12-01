@@ -14,21 +14,18 @@ button {
   border: none;
 }
 
+li{
+  list-style: none;
+}
+
+.link{
+  text-decoration: none;
+  color: var(--blue);
+  font-weight: bold;
+}
+
 ::-webkit-scrollbar {
-  width: 20px;
-  background-color: var(--grey-3);
-}
-
-::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 5px var(--green);
-}
-
-::-webkit-scrollbar-thumb {
-  background: var(--green);
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: var(--green);
+  display: none;
 }
 
 .toastify-color-progress-success {
@@ -51,7 +48,7 @@ button {
   --white: #FFFFFF;
   --black: #000000;
   --grey-1: #cecece;
-  --grey-2: #1E1E1E;
+  --grey-2: rgba(0,0,0,.1);
   --blue: #0F64F7;
 }
 `
