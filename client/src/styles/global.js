@@ -48,7 +48,7 @@ li{
   --white: #FFFFFF;
   --black: #000000;
   --grey-1: #cecece;
-  --grey-2: rgba(0,0,0,.1);
+  --grey-2: rgba(0,0,0,6%);
   --blue: #0F64F7;
 }
 `
