@@ -1,8 +1,8 @@
 import express from 'express'
 import cors from 'cors'
 
-import clientRouter from './routes/clients.routes'
-import contactRouter from './routes/contacts.routes'
+import clientsRouter from './routes/clients.routes'
+import contactsRouter from './routes/contacts.routes'
 
 const app = express()
 app.use(express.json())
@@ -14,7 +14,7 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.use('/client', clientRouter)
-app.use('/contact', contactRouter)
+app.use('/clients', clientsRouter)
+app.use('/contacts', contactsRouter)
 
 export default app;

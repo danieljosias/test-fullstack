@@ -1,11 +1,11 @@
 import { Router } from "express"
-//controller here
+import { createClientsController } from "../controllers/clients.controllers"
 
-const clientRouter = Router()
+const clientsRouter = Router()
 
-clientRouter.post("")
-clientRouter.get("")
-clientRouter.patch("/:id")
-clientRouter.delete("/:id")
+clientsRouter.post("", createClientsController)
+clientsRouter.get("")
+clientsRouter.patch("/:id")
+clientsRouter.delete("/:id")
 
-export default clientRouter;
+export default clientsRouter;
