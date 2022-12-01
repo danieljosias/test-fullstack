@@ -1,11 +1,11 @@
 import { Router } from "express"
 //controller here
 
-const contactRouter = Router()
+const contactsRouter = Router()
 
-contactRouter.post("")
-contactRouter.get("")
-contactRouter.patch("/:id")
-contactRouter.delete("/:id")
+contactsRouter.post("")
+contactsRouter.get("")
+contactsRouter.patch("/:id")
+contactsRouter.delete("/:id")
 
-export default contactRouter;
+export default contactsRouter;
