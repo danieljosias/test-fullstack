@@ -26,8 +26,8 @@ export default function FormContact() {
     
   return (
     <Container>
-        <h3>Cadastro do contato</h3>
        <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
+        <h3>Cadastro do contato</h3>
          <input placeholder="Nome completo" type="text" {...register("fullname")} />
          {errors.fullname?.message}
 
