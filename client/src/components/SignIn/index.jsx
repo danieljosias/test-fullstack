@@ -20,13 +20,13 @@ export default function SignUp() {
     
       const onSubmitFunction = (data) => {
         console.log(data)
-        //levar para signin
+        //levar para home
       }
 
   return (
     <Container>
         <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-            <h3>SignUp</h3>
+            <h3>SignIn</h3>
             
             <input placeholder="Email" type="text" {...register("email")} />
             {errors.email?.message}
@@ -34,7 +34,7 @@ export default function SignUp() {
             <input placeholder="Password" type="password" {...register("password")} />
             {errors.password?.message}
 
-            <button type="submit">Criar!</button>
+            <button type="submit">Entrar!</button>
       </form>
     </Container>
   )
