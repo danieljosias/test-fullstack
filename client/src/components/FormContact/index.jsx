@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Contact from '../Contact';
+import Header from '../Header';
 
 export default function FormContact() {
     const formSchema = yup.object().shape({
@@ -27,6 +28,7 @@ export default function FormContact() {
     
   return (
     <Container>
+      <Header/>
        <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
         <h3>Cadastro do contato</h3>
          <input placeholder="Nome completo" type="text" {...register("fullname")} />
