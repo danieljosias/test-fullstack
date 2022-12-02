@@ -16,9 +16,9 @@ const corsOptions = {
 }
 app.use(cors(corsOptions));
 
-app.use('/clients', clientsRouter)
-app.use('/contacts', contactsRouter)
 app.use('/users', usersRouter)
 app.use('/login', loginRouter)
+app.use('/clients', clientsRouter)
+app.use('/contacts', contactsRouter)
 
 export default app;

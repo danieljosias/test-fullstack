@@ -1,35 +1,34 @@
 import { Request, Response } from "express";
-import { createClientsService } from "../services/clients/createClients.services";
-import { listClientsService } from "../services/clients/listClients.services";
-import { updateClientsService } from "../services/clients/updateClients.services";
-import { deleteClientsService } from "../services/clients/deleteClients.services";
-import { IClientRequest } from "../interfaces/clients";
+import { createContactsService } from "../services/contacts/createContacts.services"
+import { listContactsService } from "../services/contacts/listContacts.services";
+import { updateContactsService } from "../services/contacts/updateContacts.services";
+import { deleteContactsService } from "../services/contacts/deleteContacts.services";
+import { IContactRequest } from "../interfaces/contact";
 
-export const createClientsController = async (req: Request, res: Response) => {
-	const { fullname, email, cellphone, mobile, createdAt }: IClientRequest = req.body;
+export const createContactsController = async (req: Request, res: Response) => {
+	const { clientId, fullname, email, cellphone, mobile }: IContactRequest = req.body;
 
-	const client = await createClientsService({fullname, email, cellphone, mobile, createdAt});
-	return res.status(201).json(client);
+	const contact = await createContactsService({clientId, fullname, email, cellphone, mobile});
+	return res.status(201).json(contact);
 };
 
-export const listClientsController = async (req: Request, res: Response) => {
-
-	const client = await listClientsService();
-	return res.status(200).json(client);
+export const listContactsController = async (req: Request, res: Response) => {
+	const contact = await listContactsService();
+	return res.status(200).json(contact);
 };
 
-export const updateClientsController = async (req: Request, res: Response) => {
-	const { fullname, email, cellphone, mobile, createdAt }: IClientRequest = req.body;
-    const id  = req.params.id
-    
-	const client = await updateClientsService(id,{fullname, email, cellphone, mobile, createdAt});
-	return res.status(200).json(client);
+export const updateContactsController = async (req: Request, res: Response) => {
+	const { clientId, fullname, email, cellphone, mobile }: IContactRequest = req.body;
+	const id  = req.params.id
+
+	const contact = await updateContactsService(id,{clientId, fullname, email, cellphone, mobile});
+	return res.status(200).json({contact: contact});
 };
 
-export const deleteClientsController = async (req: Request, res: Response) => {
-    const id  = req.params.id
-    
-	const client = await deleteClientsService(id);
-	return res.status(204).json(client);
-};
+export const deleteContactsController = async (req: Request, res: Response) => {
+	//id do contact
+	const id  = req.params.id
 
+	const contact = await deleteContactsService(id);
+	return res.status(200).json({contact: contact});
+};
