@@ -14,7 +14,7 @@ const ensureAuthTokenMiddleware = async (req: Request,res: Response,next: NextFu
     }
 
     req.users = {
-      userId: decoded.sub
+        userId: decoded.sub
     };
 
     next();
