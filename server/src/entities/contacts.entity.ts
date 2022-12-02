@@ -12,17 +12,17 @@ class Contact {
 
 	@Column({ unique: true })
 	email: string;
+	
+	@Column()
+	telephone: string;
 
 	@Column()
 	cellphone: string;
 
-	@Column()
-	mobile: string;
-
-	@ManyToOne((type) => Client,{
+	/* @ManyToOne((type) => Client,{
         eager: true, nullable: false
     })
-	client: Client[]
+	client: Client[] */
 
     constructor() {
         if (!this.id) {

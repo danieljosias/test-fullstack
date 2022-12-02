@@ -2,8 +2,10 @@ import { NextFunction, Request, Response } from 'express';
 import jwt from 'jsonwebtoken';
 
 const ensureAuthTokenMiddleware = async (req: Request,res: Response,next: NextFunction) => {
-  let token = req.body.token.slice(10,-2)
-  
+  //front end
+  /* let token = req.body.token.slice(10,-2) */
+  let token = req.headers.authorization
+ 
   if (!token){
     throw new Error('There are not a token');
   }

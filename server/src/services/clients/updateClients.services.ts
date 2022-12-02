@@ -2,7 +2,7 @@ import AppDataSource from "../../data-source";
 import Client from "../../entities/clients.entity";
 import { IClientRequest } from "../../interfaces/clients";
 
-export const updateClientsService = async (id:string,{fullname,email,cellphone,mobile,createdAt}:IClientRequest) => {
+export const updateClientsService = async (id:string,{fullname, email, telephone, cellphone, createdAt}:IClientRequest) => {
 	const clientsRepository = AppDataSource.getRepository(Client);
 	const clients = await clientsRepository.find();
 
@@ -16,8 +16,8 @@ export const updateClientsService = async (id:string,{fullname,email,cellphone,m
     const client = new Client()
     client.fullname = fullname? fullname : isClient.fullname
     client.email = email? email : isClient.email
+    client.telephone = telephone? telephone : isClient.telephone
     client.cellphone = cellphone? cellphone : isClient.cellphone
-    client.mobile = mobile? mobile : isClient.mobile
     client.createdAt = createdAt? createdAt : isClient.createdAt
 
     await clientsRepository.update(isClient!.id, client)

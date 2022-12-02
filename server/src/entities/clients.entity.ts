@@ -14,16 +14,16 @@ class Client {
 	email: string;
 
 	@Column()
-	cellphone: string;
+	telephone: string;
 
 	@Column()
-	mobile: string;
+	cellphone: string;
 
 	@CreateDateColumn()
 	createdAt: Date;
 
-	@OneToMany((type) => Contact, (contact) => contact.client)
-	contact: Contact[];
+	/* @OneToMany((type) => Contact, (contact) => contact.client)
+	contact: Contact[]; */
 
 	constructor() {
         if (!this.id) {

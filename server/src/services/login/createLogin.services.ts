@@ -15,15 +15,16 @@ export const createLoginService = async ({email, password}:ILoginRequest):Promis
     if(!users){
         throw new Error('Invalid email')
     }
-
+    
     const matchPassword = await compare(password, users?.password)
+    console.log(matchPassword)
     if(!matchPassword){
         throw new Error('Password invalid')
     }
 
     const token = jwt.sign(
         {
-            
+            email: users.email,
         },
         process.env.JWT_SECRET as string,
         {

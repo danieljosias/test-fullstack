@@ -1,6 +1,7 @@
 import AppDataSource from "../../data-source";
 import Users from "../../entities/users.entity";
 import { IUserRequest } from "../../interfaces/users";
+import { hash } from 'bcryptjs'
 
 export const createUsersService = async ({email, password }:IUserRequest): Promise<Users> =>{
     const usersRepository = AppDataSource.getRepository(Users)
@@ -12,9 +13,11 @@ export const createUsersService = async ({email, password }:IUserRequest): Promi
         throw new Error('Email already exists')
     }
 
+    const hashPassword = await hash(password, 10)
+
     const user = usersRepository.create({
         email,
-        password
+        password: hashPassword
     })
 
     await usersRepository.save(user)
