@@ -3,6 +3,7 @@ import cors from 'cors'
 
 import clientsRouter from './routes/clients.routes'
 import contactsRouter from './routes/contacts.routes'
+import usersRouter from './routes/users.routes'
 
 const app = express()
 app.use(express.json())
@@ -16,5 +17,6 @@ app.use(cors(corsOptions));
 
 app.use('/clients', clientsRouter)
 app.use('/contacts', contactsRouter)
+app.use('/users', usersRouter)
 
 export default app;
