@@ -4,7 +4,6 @@ import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Client from '../Client';
-import Header from '../Header';
 
 export default function FormClient() {
     const formSchema = yup.object().shape({
@@ -29,7 +28,6 @@ export default function FormClient() {
     
   return (
     <Container>
-      <Header/>
       <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
       <h3>Cadastro do cliente</h3>
         <input placeholder="Nome completo" type="text" {...register("fullname")} />
@@ -45,7 +43,7 @@ export default function FormClient() {
         {errors.mobile?.message}
 
         <input placeholder="Data de cadastro" type="date"{...register("createdAt")} />
-        {errors.createdAt?.message}
+        {errors.createdAt?.message && 'Data obrigatória'}
 
         <button type="submit">Enviar!</button>
       </form>
