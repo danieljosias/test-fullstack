@@ -5,3 +5,10 @@ export interface IClientRequest{
     mobile?: string;
     createdAt: Date;
 }
+
+export interface IContactRequest{
+    fullname: string;
+    email: string;
+    cellphone: string;
+    mobile?: string;
+}
