@@ -1,10 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
+import { ApiContext } from '../../providers/api';
 import { Container } from './styles'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function SignUp() {
+    const {createUser} = useContext(ApiContext)
+    const history = useHistory()
+
     const formSchema = yup.object().shape({
         email: yup.string().required("Email obrigatório").email("E-mail inválido"),
         password: yup.string().required("Senha obrigatória"),
@@ -18,9 +24,12 @@ export default function SignUp() {
         resolver: yupResolver(formSchema)
       });
     
-      const onSubmitFunction = (data) => {
-        console.log(data)
-        //levar para signin
+      const onSubmitFunction = async (data) => {
+        const result = await createUser(data)
+        if(result.name !== 'AxiosError'){
+          history.push('/signin')
+          toast.success('✔️ Usuário criado com sucesso!')
+        }
       }
 
   return (
