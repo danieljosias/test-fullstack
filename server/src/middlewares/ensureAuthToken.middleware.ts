@@ -3,8 +3,10 @@ import jwt from 'jsonwebtoken';
 
 const ensureAuthTokenMiddleware = async (req: Request,res: Response,next: NextFunction) => {
   //front end
-  /* let token = req.body.token.slice(10,-2) */
-  let token = req.headers.authorization
+  let token = req.body.token
+
+  //back end
+  /* let token = req.headers.authorization */
  
   if (!token){
     throw new Error('There are not a token');

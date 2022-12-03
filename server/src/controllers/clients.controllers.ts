@@ -6,7 +6,7 @@ import { deleteClientsService } from "../services/clients/deleteClients.services
 import { IClientRequest } from "../interfaces/clients";
 
 export const createClientsController = async (req: Request, res: Response) => {
-	const { fullname, email, telephone, cellphone, createdAt }: IClientRequest = req.body;
+	const { fullname, email, telephone, cellphone, createdAt }: IClientRequest = req.body.data;
 
 	const client = await createClientsService({fullname, email, telephone, cellphone, createdAt});
 	return res.status(201).json(client);
