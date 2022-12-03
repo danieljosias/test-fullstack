@@ -9,8 +9,8 @@ export default function FormContact() {
     const formSchema = yup.object().shape({
         fullname: yup.string().required("Nome completo obrigatório"),
         email: yup.string().required("Email obrigatório").email("E-mail inválido"),
-        cellphone: yup.string().required("Telefone obrigatório"),
-        mobile: yup.string(),
+        telephone: yup.string(),
+        cellphone: yup.string().required("Telefone obrigatório"),       
       });
     
       const {
@@ -35,11 +35,11 @@ export default function FormContact() {
          <input placeholder="Email" type="text" {...register("email")} />
          {errors.email?.message}
 
-         <input placeholder="Telefone" type="text" {...register("cellphone")} />
-         {errors.cellphone?.message}
+         <input placeholder="Telefone" type="text" {...register("telephone")} />
+         {errors.telephone?.message}
 
-         <input placeholder="Celular" type="text" {...register("mobile")} />
-         {errors.mobile?.message}
+         <input placeholder="Celular" type="text" {...register("cellphone")} />
+         {errors.cellphone?.message}
 
          <button type="submit">Enviar!</button>
        </form>
