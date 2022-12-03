@@ -9,8 +9,8 @@ export default function FormClient() {
     const formSchema = yup.object().shape({
         fullname: yup.string().required("Nome completo obrigatório"),
         email: yup.string().required("Email obrigatório").email("E-mail inválido"),
+        telephone: yup.string(),
         cellphone: yup.string().required("Telefone obrigatório"),
-        mobile: yup.string(),
         createdAt: yup.date().required("Date obrigatória")
       });
     
@@ -36,11 +36,11 @@ export default function FormClient() {
         <input placeholder="Email" type="text" {...register("email")} />
         {errors.email?.message}
 
-        <input placeholder="Telefone" type="text" {...register("cellphone")} />
-        {errors.cellphone?.message}
+        <input placeholder="Telefone" type="text" {...register("telephone")} />
+        {errors.telephone?.message}
 
-        <input placeholder="Celular" type="text" {...register("mobile")} />
-        {errors.mobile?.message}
+        <input placeholder="Celular" type="text" {...register("cellphone")} />
+        {errors.cellphone?.message}
 
         <input placeholder="Data de cadastro" type="date"{...register("createdAt")} />
         {errors.createdAt?.message && 'Data obrigatória'}
