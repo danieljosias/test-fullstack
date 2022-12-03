@@ -1,27 +1,36 @@
-import React from 'react'
+import React,{useContext} from 'react'
+import { ApiContext } from '../../providers/api'
 import { Container } from './styles'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
+import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
-export default function SignUp() {
-    const formSchema = yup.object().shape({
-        email: yup.string().required("Email obrigatório").email("E-mail inválido"),
-        password: yup.string().required("Senha obrigatória"),
-      });
-    
-      const {
-        register,
-        handleSubmit,
-        formState: { errors }
-      } = useForm({
-        resolver: yupResolver(formSchema)
-      });
-    
-      const onSubmitFunction = (data) => {
-        console.log(data)
-        //levar para home
+export default function SignIn() {
+  const { createLogin } = useContext(ApiContext)
+  const history = useHistory()
+
+  const formSchema = yup.object().shape({
+      email: yup.string().required("Email obrigatório").email("E-mail inválido"),
+      password: yup.string().required("Senha obrigatória"),
+    });
+  
+    const {
+      register,
+      handleSubmit,
+      formState: { errors }
+    } = useForm({
+      resolver: yupResolver(formSchema)
+    });
+  
+    const onSubmitFunction = async (data) => {
+      const result = await createLogin(data)
+      if(result.name !== 'AxiosError'){
+        history.push('/client')
+        toast.success('Login bem sucedido')
       }
+    }
 
   return (
     <Container>
