@@ -6,7 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
-
+import { Link } from 'react-router-dom'
 export default function SignUp() {
     const { createUser } = useContext(ApiContext)
     const history = useHistory()
@@ -46,6 +46,9 @@ export default function SignUp() {
             {errors.password?.message}
 
             <button type="submit">Criar!</button>
+            <div>
+              <span>Você já possui uma conta?</span> <Link to='signin'>Entrar</Link>
+            </div>
       </form>
     </Container>
   )

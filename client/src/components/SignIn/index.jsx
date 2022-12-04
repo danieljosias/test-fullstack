@@ -27,11 +27,13 @@ export default function SignIn() {
   
     const onSubmitFunction = async (data) => {
       const result = await createLogin(data)
-      localStorage.setItem('token', result.data.token)
+      localStorage.setItem('token', result.data?.token)
 
       if(result.name !== 'AxiosError'){
         history.push('/client')
-        toast.success('Login bem sucedido')
+        toast.success('✔️ Logado com sucesso')
+      }else{
+        toast.error('❌ Senha inválida')
       }
     }
 

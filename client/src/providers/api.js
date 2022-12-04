@@ -58,9 +58,9 @@ export const ApiProvider = ({children}) =>{
         }
     }
 
-    async function createContact(data){
+    async function createContact(token,data){
         try {
-            const result = await api.post('/contacts', data)
+            const result = await api.post('/contacts', {token,data})
             return result
         } catch (error) {
             return error
@@ -76,9 +76,9 @@ export const ApiProvider = ({children}) =>{
         }
     }
 
-    async function updateContact(id){
+    async function updateContact(id,token,data){
         try {
-            const result = await api.patch(`/clients/${id}`)
+            const result = await api.patch(`/contacts/${id}`,{token,data})
             return result
         } catch (error) {
             return error
