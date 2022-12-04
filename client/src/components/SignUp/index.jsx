@@ -8,7 +8,7 @@ import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 export default function SignUp() {
-    const {createUser} = useContext(ApiContext)
+    const { createUser } = useContext(ApiContext)
     const history = useHistory()
 
     const formSchema = yup.object().shape({
@@ -29,6 +29,8 @@ export default function SignUp() {
         if(result.name !== 'AxiosError'){
           history.push('/signin')
           toast.success('✔️ Usuário criado com sucesso!')
+        }else{
+          toast.error('❌ E-mail já cadastrado!')
         }
       }
 

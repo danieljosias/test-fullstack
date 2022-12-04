@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
+import { ApiContext } from '../../providers/api'
 import { Container } from './styles'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Client from '../Client';
+import { useHistory } from 'react-router-dom'
+import { toast } from 'react-toastify'
 
 export default function FormClient() {
+    const { createClient, listClient} = useContext(ApiContext)
+    const history = useHistory()
+    const [clients, setClients] = useState()
+
     const formSchema = yup.object().shape({
         fullname: yup.string().required("Nome completo obrigatório"),
         email: yup.string().required("Email obrigatório").email("E-mail inválido"),
@@ -22,10 +29,33 @@ export default function FormClient() {
         resolver: yupResolver(formSchema)
       });
     
-      const onSubmitFunction = (data) => {
-        console.log(data);
+      const onSubmitFunction = async (data) => {
+        const token = localStorage.getItem('token')
+        if(!token){
+          toast.error('❌ Não autorizado, faça login!')
+          history.push('/signin')
+        }
+        
+        const result = await createClient(data, token)
+        if(result.name !== 'AxiosError'){
+          toast.success('✔️ Cliente cadastrado com sucesso!')
+        }else{
+          toast.error('❌ E-mail já cadastrado!')
+        }
       }
-    
+      
+   useEffect(()=>{
+    listClients()
+   },[])
+
+    async function listClients(){
+      const result = await listClient()
+
+      if(result.name !== 'AxiosError'){
+        setClients(result.data)
+      }
+    }
+
   return (
     <Container>
       <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
@@ -47,7 +77,12 @@ export default function FormClient() {
 
         <button type="submit">Enviar!</button>
       </form>
-      <Client/>
+
+      <div className='client'>
+        {clients?.map((client) =>{
+          return <Client key={client.id} client={client} />
+        })}
+      </div>
     </Container>
   )
 }

@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useHistory } from 'react-router-dom'
 import { toast } from 'react-toastify'
+import { Link } from 'react-router-dom'
 
 export default function SignIn() {
   const { createLogin } = useContext(ApiContext)
@@ -26,6 +27,8 @@ export default function SignIn() {
   
     const onSubmitFunction = async (data) => {
       const result = await createLogin(data)
+      localStorage.setItem('token', result.data.token)
+
       if(result.name !== 'AxiosError'){
         history.push('/client')
         toast.success('Login bem sucedido')
@@ -44,6 +47,9 @@ export default function SignIn() {
             {errors.password?.message}
 
             <button type="submit">Entrar!</button>
+            <div>
+              <span>Ainda não tem conta?</span> <Link to='signup'>Cadastre-se</Link>
+            </div>
       </form>
     </Container>
   )

@@ -3,7 +3,6 @@ import api from '../services'
 export const ApiContext = createContext([])
 
 export const ApiProvider = ({children}) =>{
-    let token = localStorage.getItem('token')
 
     async function createUser(data){
         try {
@@ -23,9 +22,9 @@ export const ApiProvider = ({children}) =>{
         }
     }
 
-    async function createClient(data){
+    async function createClient(data, token){
         try {
-            const result = await api.post('/clients', data)
+            const result = await api.post('/clients', {data, token})
             return result
         } catch (error) {
             return error
@@ -34,16 +33,16 @@ export const ApiProvider = ({children}) =>{
 
     async function listClient(){
         try {
-            const result = await api.post('/clients')
+            const result = await api.get('/clients')
             return result
         } catch (error) {
             return error
         }
     }
 
-    async function updateClient(id){
+    async function updateClient(id,token,data){
         try {
-            const result = await api.post(`/clients/${id}`)
+            const result = await api.patch(`/clients/${id}`,{token,data})
             return result
         } catch (error) {
             return error
@@ -52,7 +51,7 @@ export const ApiProvider = ({children}) =>{
 
     async function deleteClient(id){
         try {
-            const result = await api.post(`/clients/${id}`)
+            const result = await api.delete(`/clients/${id}`)
             return result
         } catch (error) {
             return error
@@ -70,7 +69,7 @@ export const ApiProvider = ({children}) =>{
 
     async function listContact(){
         try {
-            const result = await api.post('/contacts')
+            const result = await api.get('/contacts')
             return result
         } catch (error) {
             return error
@@ -79,7 +78,7 @@ export const ApiProvider = ({children}) =>{
 
     async function updateContact(id){
         try {
-            const result = await api.post(`/clients/${id}`)
+            const result = await api.patch(`/clients/${id}`)
             return result
         } catch (error) {
             return error
@@ -88,7 +87,7 @@ export const ApiProvider = ({children}) =>{
 
     async function deleteContact(id){
         try {
-            const result = await api.post(`/contacts/${id}`)
+            const result = await api.delete(`/contacts/${id}`)
             return result
         } catch (error) {
             return error

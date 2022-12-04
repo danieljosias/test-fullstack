@@ -26,11 +26,20 @@ export const Container = styled.div`
             padding: 10px;
             font-size: 15px;
             font-weight: bold;
-
+            
             &:hover{
                 background-color: var(--blue);
                 transition: .3s all ease-in;
             }
         }
+    }
+    
+    .client{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: scroll;
+        width: 330px;
+        height: 270px;
     }
 `;

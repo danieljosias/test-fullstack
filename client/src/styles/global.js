@@ -25,7 +25,7 @@ li{
 }
 
 ::-webkit-scrollbar {
-  display: none;
+  
 }
 
 .toastify-color-progress-success {
