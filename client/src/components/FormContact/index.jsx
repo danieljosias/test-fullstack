@@ -1,28 +1,56 @@
-import React from 'react'
+import React,{useState, useEffect, useContext} from 'react'
+import { ApiContext } from '../../providers/api';
 import { Container } from './styles'
 import * as yup from 'yup';
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import Contact from '../Contact';
+import { toast } from 'react-toastify'
+import { useHistory } from 'react-router-dom'
 
 export default function FormContact() {
-    const formSchema = yup.object().shape({
-        fullname: yup.string().required("Nome completo obrigatório"),
-        email: yup.string().required("Email obrigatório").email("E-mail inválido"),
-        telephone: yup.string(),
-        cellphone: yup.string().required("Telefone obrigatório"),       
-      });
-    
-      const {
-        register,
-        handleSubmit,
-        formState: { errors }
-      } = useForm({
-        resolver: yupResolver(formSchema)
-      });
-    
-      const onSubmitFunction = (data) => {
-        console.log(data);
+  const [contacts, setContacts] = useState()
+  const { createContact, listContact } = useContext(ApiContext)
+  const history = useHistory()
+
+  const formSchema = yup.object().shape({
+      fullname: yup.string().required("Nome completo obrigatório"),
+      email: yup.string().required("Email obrigatório").email("E-mail inválido"),
+      telephone: yup.string(),
+      cellphone: yup.string().required("Telefone obrigatório"),       
+    });
+  
+    const {
+      register,
+      handleSubmit,
+      formState: { errors }
+    } = useForm({
+      resolver: yupResolver(formSchema)
+    });
+  
+    const onSubmitFunction = async (data) => {
+      const token = localStorage.getItem('token')
+      if(!token){
+        toast.error('❌ Não autorizado, faça login!')
+        history.push('/signin')
+      }
+
+      const res = await createContact(token,data)
+      if(res.name !== 'AxiosError'){
+        toast.success('✔️ Contato cadastrado com sucesso!')
+      }
+    }
+
+    useEffect(()=>{
+      listContacts()
+    },[])
+  
+      async function listContacts(){
+        const result = await listContact()
+  
+        if(result.name !== 'AxiosError'){
+          setContacts(result.data)
+        }
       }
     
   return (
@@ -43,7 +71,11 @@ export default function FormContact() {
 
          <button type="submit">Enviar!</button>
        </form>
-       <Contact/>
+       <div className='contact'>
+        {contacts?.map(contact => {
+          return <Contact key={contact.id} contact={contact}/>
+        })}
+       </div>
     </Container>
   )
 }

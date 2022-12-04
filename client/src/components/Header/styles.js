@@ -14,5 +14,16 @@ export const Container = styled.div`
                 text-decoration: underline;
             }
         }
+        span{
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            gap: 5px;
+
+            button{
+                background-color: transparent;
+                font-size: 16px;
+            }
+        }
     }
 `;

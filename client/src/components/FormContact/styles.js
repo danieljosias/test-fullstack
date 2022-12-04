@@ -33,4 +33,13 @@ export const Container = styled.div`
             }
         }
     }
+
+    .contact{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        overflow-y: scroll;
+        width: 330px;
+        height: 210px;
+    }
 `;

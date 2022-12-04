@@ -7,15 +7,14 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import { toast } from 'react-toastify'
 
-const ModalUpdateClientContent = ({handleCloseUpdateModal, contact}) => {
-    const { updateClient} = useContext(ApiContext)
+const ModalUpdateContactContent = ({handleCloseModal, contact}) => {
+    const { updateContact} = useContext(ApiContext)
 
     const formSchema = yup.object().shape({
         fullname: yup.string().required("Nome completo obrigatório"),
         email: yup.string().required("Email obrigatório").email("E-mail inválido"),
         telephone: yup.string(),
-        cellphone: yup.string().required("Telefone obrigatório"),
-        createdAt: yup.date().required("Date obrigatória")
+        cellphone: yup.string().required("Telefone obrigatório")
     });
     
     const {
@@ -29,25 +28,25 @@ const ModalUpdateClientContent = ({handleCloseUpdateModal, contact}) => {
     const onSubmitFunction = async (data) => {
         const token = localStorage.getItem('token')
         const id = contact.id
-        const res = await updateClient(id,token,data)
 
+        const res = await updateContact(id,token,data)
         if(res.name !== 'AxiosError'){
-            toast.success('✔️ Cliente atualizado com sucesso!')
-            handleCloseUpdateModal()
+            toast.success('✔️ Contato atualizado com sucesso!')
+            handleCloseModal()
         }else{
-            toast.error('❌ Client não encontrado')
+            toast.error('❌ Contato não encontrado')
         }
     }
 
     return (
     <Container>
         <div className='modalHeader'>
-          <h2>Editar cliente</h2>
-          <button onClick={handleCloseUpdateModal}><IoMdCloseCircleOutline/></button>
+          <h2>Editar contato</h2>
+          <button onClick={handleCloseModal}><IoMdCloseCircleOutline/></button>
         </div>
 
         <form className="form" onSubmit={handleSubmit(onSubmitFunction)}>
-            <h3>Editar cliente</h3>
+            <h3>Editar contato</h3>
             <input placeholder="Nome completo" type="text" {...register("fullname")} />
             {errors.fullname?.message}
 
@@ -60,13 +59,10 @@ const ModalUpdateClientContent = ({handleCloseUpdateModal, contact}) => {
             <input placeholder="Celular" type="text" {...register("cellphone")} />
             {errors.cellphone?.message}
 
-            <input placeholder="Data de cadastro" type="date"{...register("createdAt")} />
-            {errors.createdAt?.message && 'Data obrigatória'}
-
             <button type="submit">Editar!</button>
         </form>
     </Container>
   )
 }
 
-export default ModalUpdateClientContent
+export default ModalUpdateContactContent
