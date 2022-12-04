@@ -13,7 +13,7 @@ export default function SignUp() {
 
     const formSchema = yup.object().shape({
         email: yup.string().required("Email obrigatório").email("E-mail inválido"),
-        password: yup.string().required("Senha obrigatória"),
+        password: yup.string().min(8).required("Senha obrigatória"),
       });
     
       const {
