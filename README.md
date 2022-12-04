@@ -11,13 +11,6 @@ Visão geral do projeto, um pouco das tecnologias usadas.
 - [TypeORM](https://typeorm.io/)
 - [Yup](https://www.npmjs.com/package/yup)
 
-## 2. Testes
-
-Para executar os testes rodar o comando abaixo:
----
-    yarn test
----
-
 ## 3. Início Rápido
 
 [ Voltar para o topo ](#tabela-de-conteúdos)
@@ -43,6 +36,13 @@ Execute as migrations com o comando:
 yarn typeorm migration:run -d src/data-source.ts
 ```
 
+---
+
+## 3.4. Testes
+
+Para executar os testes rodar o comando abaixo:
+---
+    yarn test
 ---
 
 ## 4. Autenticação
@@ -493,11 +493,11 @@ vazio
 ## Tabela de Conteúdos
 
 - [Visão Geral](#1-visão-geral)
-- [Testes](#2-testes)
 - [Início Rápido](#3-início-rápido)
   - [Instalando Dependências](#31-instalando-dependências)
   - [Variáveis de Ambiente](#32-variáveis-de-ambiente)
   - [Migrations](#33-migrations)
+   - [Testes](#34-testes)
 - [Autenticação](#4-autenticação)
 - [Endpoints](#5-endpoints)
 - [Endpoints Resumo](#6-endpoints-resumo)
