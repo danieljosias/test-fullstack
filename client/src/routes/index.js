@@ -15,6 +15,10 @@ export const Routes = () =>{
                 <SignIn/>
             </Route>
 
+            <Route exact path="/signup">
+                <SignUp/>
+            </Route>
+
             <Route exact path="/client">
                 <FormClient/>
             </Route>
