@@ -27,7 +27,6 @@ export default function Client({client}) {
     setModalUpdateCliente(false)
   }
 
-
   return (
     <Container>
       <ModalUpdateClient handleCloseUpdateModal={handleCloseUpdateModal} modalUpdateCliente={modalUpdateCliente} client={client}/>
