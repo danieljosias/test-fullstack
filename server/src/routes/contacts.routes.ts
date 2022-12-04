@@ -10,6 +10,6 @@ const contactsRouter = Router()
 contactsRouter.post("", ensureAuthTokenMiddleware, createContactsController)
 contactsRouter.get("", listContactsController)
 contactsRouter.patch("/:id", ensureAuthTokenMiddleware, updateContactsController)
-contactsRouter.delete("/:id", ensureAuthTokenMiddleware, deleteContactsController)
+contactsRouter.delete("/:id", deleteContactsController)
 
 export default contactsRouter;

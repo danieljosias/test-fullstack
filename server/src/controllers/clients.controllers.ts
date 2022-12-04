@@ -13,15 +13,14 @@ export const createClientsController = async (req: Request, res: Response) => {
 };
 
 export const listClientsController = async (req: Request, res: Response) => {
-
 	const client = await listClientsService();
 	return res.status(200).json(client);
 };
 
 export const updateClientsController = async (req: Request, res: Response) => {
-	const { fullname, email, telephone, cellphone, createdAt }: IClientRequest = req.body;
+	const { fullname, email, telephone, cellphone, createdAt }: IClientRequest = req.body.data;
     const id  = req.params.id
-    
+	
 	const client = await updateClientsService(id,{fullname, email, telephone, cellphone, createdAt});
 	return res.status(200).json(client);
 };

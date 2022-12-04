@@ -9,7 +9,7 @@ const clientsRouter = Router()
 
 clientsRouter.post("", ensureAuthTokenMiddleware, createClientsController)
 clientsRouter.get("", listClientsController)
-clientsRouter.patch("/:id", updateClientsController)
+clientsRouter.patch("/:id", ensureAuthTokenMiddleware, updateClientsController)
 clientsRouter.delete("/:id", deleteClientsController)
 
 export default clientsRouter;

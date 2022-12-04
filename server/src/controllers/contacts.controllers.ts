@@ -6,7 +6,7 @@ import { deleteContactsService } from "../services/contacts/deleteContacts.servi
 import { IContactRequest } from "../interfaces/contact";
 
 export const createContactsController = async (req: Request, res: Response) => {
-	const { fullname, email, telephone, cellphone }: IContactRequest = req.body;
+	const { fullname, email, telephone, cellphone }: IContactRequest = req.body.data;
 
 	const contact = await createContactsService({fullname, email, telephone, cellphone});
 	return res.status(201).json(contact);
@@ -18,7 +18,7 @@ export const listContactsController = async (req: Request, res: Response) => {
 };
 
 export const updateContactsController = async (req: Request, res: Response) => {
-	const { fullname, email, telephone, cellphone }: IContactRequest = req.body;
+	const { fullname, email, telephone, cellphone }: IContactRequest = req.body.data;
 	const id  = req.params.id
 
 	const contact = await updateContactsService(id,{fullname, email, telephone, cellphone});
