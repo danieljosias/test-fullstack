@@ -15,5 +15,5 @@ export const deleteContactsService = async (id:string):Promise<any> => {
 
     await contactsRepository.delete(contacts!.id)
  
-    return true
+    return {}
 }
