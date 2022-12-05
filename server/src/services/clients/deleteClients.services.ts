@@ -13,5 +13,5 @@ export const deleteClientsService = async (id:string) => {
 
     await clientsRepository.delete(isClient!.id)
 
-	return true
+	return {}
 };
